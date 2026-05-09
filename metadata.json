@@ -1,0 +1,6 @@
+{
+  "name": "NeonHabit",
+  "description": "A premium modern habit tracker with neon accents and AI suggestions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["AI habit suggestions", "Daily tracking", "Progress analytics"]
+}

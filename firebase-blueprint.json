@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account and statistics",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "birthYear": { "type": "number" },
+        "createdAt": { "type": "number" },
+        "activeHabits": { 
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "icon": { "type": "string" },
+              "category": { "type": "string" },
+              "goal": { "type": "number" }
+            }
+          }
+        },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "streaks": { "type": "number" },
+            "completions": { "type": "number" }
+          }
+        }
+      },
+      "required": ["uid", "displayName", "email", "birthYear", "createdAt", "stats", "activeHabits"]
+    },
+    "MonthlyHabits": {
+      "title": "Monthly Habits",
+      "description": "Grid data for a specific month",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "monthId": { "type": "string" },
+        "gridData": {
+          "type": "object",
+          "description": "Map of habit names to 31-day boolean arrays"
+        },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["userId", "monthId", "gridData"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Individual user profiles"
+    },
+    "/users/{userId}/months/{monthId}": {
+      "schema": "MonthlyHabits",
+      "description": "Habit tracker data partitioned by month"
+    }
+  }
+}
